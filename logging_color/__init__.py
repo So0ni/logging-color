@@ -1,6 +1,19 @@
 import sys
 import os
 import logging
+import importlib
+
+logger = logging.getLogger('logging_color')
+if sys.platform == 'win32' and 'PYCHARM_HOSTED' not in os.environ:
+    try:
+        colorama = importlib.import_module('colorama')
+        colorama.init()
+        COLOR_TRIGGER = True
+    except ImportError:
+        logger.warning('you need install `colorama` on win32 platform')
+        COLOR_TRIGGER = False
+else:
+    COLOR_TRIGGER = True
 
 
 class ColorStreamHandler(logging.StreamHandler):
@@ -11,12 +24,11 @@ class ColorStreamHandler(logging.StreamHandler):
         'ERROR': '\033[31;1m',
         'CRITICAL': '\033[41;1m',
     }
-    colors_support = sys.platform != 'win32' or 'PYCHARM_HOSTED' in os.environ
 
     def emit(self, record):
         try:
             msg = self.format(record)
-            if self.colors_support:
+            if COLOR_TRIGGER:
                 msg = f'{self.colors[record.__dict__["levelname"]]}{msg}\033[0m'
             stream = self.stream
             # issue 35046: merged two stream.writes into one.
