@@ -29,7 +29,7 @@ class ColorStreamHandler(logging.StreamHandler):
         try:
             msg = self.format(record)
             if COLOR_TRIGGER:
-                msg = f'{self.colors[record.__dict__["levelname"]]}{msg}\033[0m'
+                msg = '{}{}\033[0m'.format(self.colors.get(record.__dict__["levelname"], "\033[0m"), msg)
             stream = self.stream
             # issue 35046: merged two stream.writes into one.
             stream.write(msg + self.terminator)
