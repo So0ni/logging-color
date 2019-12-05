@@ -10,7 +10,7 @@ setup(
     author_email='173976914@qq.com',
     url='https://github.com/So0ni/logging_color',
     packages=['logging_color'],
-    include_package_data=True,
+    include_package_data=False,
     python_requires='>=3.7',
     install_requires=[],
     data_files=[],
@@ -19,7 +19,6 @@ setup(
         "License :: OSI Approved :: GNU General Public License (GPL)",
         "Development Status :: 4 - Beta",
         "Environment :: Console",
-        "System :: Logging",
     ],
     scripts=[],
 )
