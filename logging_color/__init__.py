@@ -9,7 +9,7 @@ if sys.platform == 'win32' and 'PYCHARM_HOSTED' not in os.environ:
         colorama = importlib.import_module('colorama')
         colorama.init()
         COLOR_TRIGGER = True
-    except ImportError:
+    except ModuleNotFoundError:
         logger.warning('you need install `colorama` on win32 platform')
         COLOR_TRIGGER = False
 else:

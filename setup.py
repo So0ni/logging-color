@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='logging_color',
-    version='0.1.1',
+    version='0.1.2',
     description='a color patch for python standard logging module',
     license='GPL Licence',
     author='Sonic Young',
